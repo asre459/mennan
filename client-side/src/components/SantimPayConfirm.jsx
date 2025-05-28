@@ -4,9 +4,34 @@ import { useNavigate } from 'react-router-dom';
 function SantimPayConfirm({ donationData }) {
   const navigate = useNavigate();
 
-  const handleConfirm = () => {
-    alert('Payment successful! 🎉');
-    navigate('/receipt', { state: donationData });
+  const handleConfirm = async () => {
+    try {
+       if (!donationData.donationId) {
+        throw new Error('Missing donation ID');
+      }
+      // First update the donation with the payment method
+      const updateResponse = await fetch(
+        `http://localhost:5000/api/donations/${donationData.donationId}/method`,
+        {
+          method: 'PATCH',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ method: donationData.method })
+        }
+      );
+
+      if (!updateResponse.ok) {
+        throw new Error('Failed to update payment method');
+      }
+
+      // Then proceed with payment processing
+      alert('Payment successful! 🎉');
+      navigate('/receipt', { state: { ...donationData ,
+        donnation:await updateResponse.json() }  });
+      
+    } catch (err) {
+      console.error('Confirmation error:', err);
+      alert('Payment confirmation failed. Please try again.');
+    }
   };
 
   if (!donationData) {

@@ -8,7 +8,6 @@ function Donate() {
   const [amount, setAmount] = useState('');
   const [customAmount, setCustomAmount] = useState('');
   const [loading, setLoading] = useState(false);
-  const [method]=useState('santimay')
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -26,14 +25,14 @@ function Donate() {
       const response = await fetch('http://localhost:5000/api/donations/met', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, contact, amount: finalAmount ,account:contact,method}),
+        body: JSON.stringify({ name, contact, amount: finalAmount}),
       });
 
       const data = await response.json();
 
       if (response.ok) {
-        alert('Donation info received. Proceeding to payment...');
-        navigate('/santimpay', { state: { name, amount: finalAmount } });
+        // alert('Donation info received. Proceeding to payment...');
+        navigate('/santimpay', { state: { name, amount: finalAmount ,contact ,  donationId: data.donationId } });// Add this line
         setName('');
         setContact('');
         setAmount('');
@@ -49,7 +48,7 @@ function Donate() {
       setLoading(false);
     }
   };
-
+  
   return (
     <div style={styles.container}>
       <h1 style={styles.title}>ደግ ልቦች</h1>
@@ -97,7 +96,7 @@ function Donate() {
 
         <input
           type="number"
-          placeholder="Or enter custom amount"
+          placeholder="enter custom amount"
           value={customAmount}
           onChange={(e) => {
             setCustomAmount(e.target.value);
@@ -105,6 +104,8 @@ function Donate() {
           }}
           style={styles.input}
         />
+        
+
 
         <button type="submit" disabled={loading} style={styles.button}>
           {loading ? 'Submitting...' : 'Proceed to Donate'}
@@ -128,7 +129,7 @@ const styles = {
     textAlign: 'center',
     fontFamily: 'Arial, sans-serif',
   },
-  title: {
+ title: {
     fontSize: '2rem',
     color: '#444',
     marginBottom: '5px',
@@ -145,7 +146,7 @@ const styles = {
   input: {
     padding: '10px',
     fontSize: '16px',
-    borderRadius: '8px',
+    borderRadius: '10px',
     border: '1px solid #ccc',
     outlineColor: '#f0a500',
   },

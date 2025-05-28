@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-
 const partners = [
   {
     id: "telebirr",
@@ -75,9 +74,8 @@ router.post('/validate', (req, res) => {
       valid = cardNumberRegex.test(inputValue);
       break;
     default:
-      return res.status(400).json({ error: 'Unsupported input type' });
+  return res.status(400).json({ error: 'Unsupported input type' });
   }
-
   res.json({ valid });
 });
 

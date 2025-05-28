@@ -162,11 +162,13 @@ const styles = {
     maxWidth: "600px",
   },
   image: {
-    width: "100%",
-    borderRadius: "0.75rem",
-    boxShadow: "0 8px 16px rgba(0,0,0,0.2)",
+    width: "400px",
+    hight:"400px",
+    borderRadius: "1.5rem",
+    boxShadow: "0 8px 8px rgba(0,0,0,0.2)",
     transition: "transform 0.3s ease",
     cursor: "pointer",
+    padding: "2rem 2rem",
   },
   sectionTitle: {
     fontSize: "2.5rem",

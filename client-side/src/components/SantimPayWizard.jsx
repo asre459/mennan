@@ -15,6 +15,8 @@ function SantimPayWizard() {
     amount: location.state?.amount,
     partner,
     inputValue,
+    method: partner?.id ,
+      donationId: location.state?.donationId 
   };
 
   const next = (input) => {
@@ -25,17 +27,15 @@ function SantimPayWizard() {
   return (
     <div style={styles.container}>
       <div style={styles.card}>
-        <h1 style={styles.title}>💳 SANTIMPay Donation</h1>
+        <h1 style={styles.title}>💳 ArifPay Donation</h1>
         <p style={styles.stepText}>Step {step} of 3</p>
 
         {step === 1 && <SantimPayStep1 onNext={next} setPartner={setPartner} />}
         {step === 2 && (
           <SantimPayStep2
             partner={partner}
-            onNext={next}
-          />
-        )}
-        {step === 3 && <SantimPayConfirm donationData={donationData} />}
+            onNext={next} />)}
+        {step === 3 && <SantimPayConfirm donationData={donationData}/>}
       </div>
     </div>
   );
