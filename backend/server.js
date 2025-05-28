@@ -7,7 +7,9 @@ const partnerRoutes = require('./routes/partners');
 const contactRoutes = require('./routes/contact'); // Uncomment if you have a contact route
 
 const app = express();
-app.use(cors({origin: 'http://localhost:5173'}));
+app.use(cors({
+  origin: ['http://localhost:5173', 'https://asremennaapp.onrender.com']
+}));
 app.use(express.json());
 
 app.use('/api/donations', donationRoutes);

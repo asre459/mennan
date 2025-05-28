@@ -11,7 +11,7 @@ function SantimPayConfirm({ donationData }) {
       }
       // First update the donation with the payment method
       const updateResponse = await fetch(
-        `http://localhost:5000/api/donations/${donationData.donationId}/method`,
+        `${import.meta.env.VITE_API_URL}/api/donations/${donationData.donationId}/method`,
         {
           method: 'PATCH',
           headers: { 'Content-Type': 'application/json' },

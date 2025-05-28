@@ -19,7 +19,7 @@ const ContactUs = () => {
     e.preventDefault();
 
     try {
-      const res = await fetch("http://localhost:5000/api/contact", {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/contact`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
@@ -61,7 +61,7 @@ const ContactUs = () => {
           <h1 style={{ fontSize: "3rem", fontWeight: "700" }}>Contact</h1>
           <p style={{ fontSize: "1.25rem" }}>ያግኙን</p>
           <a
-            href="#contact-form"
+           href="/donate"
             style={{
               display: "inline-block",
               background: "linear-gradient(to right, #ef4444, #b91c1c)",
