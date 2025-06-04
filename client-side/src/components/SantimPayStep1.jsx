@@ -5,7 +5,7 @@ function SantimPayStep1({ onNext, setPartner }) {
   const [selected, setSelected] = useState(null);
 
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_URL}/api/partners`)
+    fetch('http://localhost:5000/api/partners')
       .then((res) => res.json())
       .then((data) => setPartners(data.partners))
       .catch(console.error);

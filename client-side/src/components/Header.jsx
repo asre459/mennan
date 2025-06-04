@@ -16,9 +16,9 @@ function Header() {
 
   return (
     <header style={{
-      backgroundColor: '#047857',
+      backgroundColor: 'rgba(238, 244, 245, 0.1)',
       padding: '0.5rem 1.5rem',
-      boxShadow: '0 4px 8px rgba(0,0,0,0.1)',
+      boxShadow: '0 4px 8px rgba(236, 227, 227, 0.1)',
       position: 'sticky',
       top: 0,
       zIndex: 1000,
@@ -35,7 +35,7 @@ function Header() {
           display: 'flex',
           alignItems: 'center',
           gap: '0.8rem',
-          color: 'white',
+          color: 'black',
           fontWeight: '700',
           fontSize: '1.5rem',
           userSelect: 'none',
@@ -61,7 +61,7 @@ function Header() {
             aria-label="Toggle menu"
             style={{
               fontSize: '1.8rem',
-              color: 'white',
+              color: 'black',
               background: 'none',
               border: 'none',
               cursor: 'pointer',
@@ -88,7 +88,7 @@ function Header() {
               onMouseEnter={() => setHoverIndex(i)}
               onMouseLeave={() => setHoverIndex(null)}
               style={{
-                color: hoverIndex === i ? '#d1fae5' : 'white',
+                color: hoverIndex === i ? '#d1fae5' : 'black',
                 textDecoration: 'none',
                 fontWeight: '600',
                 fontSize: '1rem',

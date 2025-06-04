@@ -17,7 +17,7 @@ const partners = [
     id: "mpesa",
     name: "Mpesa",
     description: "Mpsea is a mobile money service provider in Ethiopia by Safaricom",
-    input: "phone number"
+    input: "safaricom"
   },
   {
     id: "Commercial bank",
@@ -58,11 +58,15 @@ router.post('/validate', (req, res) => {
   const accountRegex = /^\d{8,16}$/;
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const cardNumberRegex = /^\d{13,19}$/;
+    const safaricomphoneRegex = /^(\+251|0)?7\d{8}$/;
 
   let valid = false;
   switch (partner.input) {
     case 'phone number':
       valid = phoneRegex.test(inputValue);
+      break;
+       case 'safaricom':
+      valid = safaricomphoneRegex.test(inputValue);
       break;
     case 'account number':
       valid = accountRegex.test(inputValue);

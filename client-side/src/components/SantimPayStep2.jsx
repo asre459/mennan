@@ -12,7 +12,7 @@ function SantimPayStep2({ partner, onNext }) {
 
     setLoading(true);
     try {
-      const res = await fetch('${import.meta.env.VITE_API_URL}/api/partners/validate', {
+      const res = await fetch('http://localhost:5000/api/partners/validate', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ id: partner.id, inputValue: input }),
