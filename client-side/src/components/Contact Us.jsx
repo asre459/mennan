@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import heroImage from "../../src/assets/image13.jpg";
-import phoneIcon from "../../src/assets/phone.png"; // You may want to replace with a dedicated phone icon
+import heroImage from "../../dist/assets/image13-c-w0pB1D.jpg";
+import phoneIcon from "../../src/assets/phone.png";
 import emailIcon from "../../src/assets/asreE.jpg";
 import locationIcon from "../../src/assets/location.png";
 
@@ -19,17 +19,24 @@ const ContactUs = () => {
     e.preventDefault();
 
     try {
-      const res = await fetch("https://backend-project-mrdg.onrender.com/api/contact", {
+      const res = await fetch("http://localhost:5000/api/contact", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { 
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
         body: JSON.stringify(formData),
       });
+
+      if (!res.ok) {
+        throw new Error(`Server responded with status ${res.status}`);
+      }
 
       const data = await res.json();
       setStatus(data.message || "Message sent!");
       setFormData({ name: "", email: "", message: "" });
-    // eslint-disable-next-line no-unused-vars
     } catch (error) {
+      console.error("Error submitting form:", error);
       setStatus("Something went wrong. Please try again.");
     }
   };
@@ -39,29 +46,79 @@ const ContactUs = () => {
     "+33664495674", "+14257800316", "+15713989298"
   ];
 
+  // Fixed style objects to avoid mixing shorthand and non-shorthand properties
+  const inputBaseStyle = {
+    width: "100%",
+    padding: "0.5rem 1rem",
+    borderRadius: "0.5rem",
+    borderWidth: "1.5px",
+    borderStyle: "solid",
+    borderColor: "#d1d5db",
+    fontSize: "1rem",
+    outline: "none",
+  };
+
+  const inputFocusedStyle = {
+    borderColor: "#4f46e5",
+    boxShadow: "0 0 0 3px rgba(99,102,241,0.5)"
+  };
+
   return (
     <div style={{ backgroundColor: "#fff", fontFamily: "sans-serif" }}>
-      {/* Hero */}
       <div style={{
-        position: "relative", padding: "5rem 1rem", textAlign: "center",
-        color: "white", borderBottomLeftRadius: "1rem", borderBottomRightRadius: "1rem"
+        position: "relative", 
+        padding: "5rem 1rem", 
+        textAlign: "center",
+        color: "white", 
+        borderBottomLeftRadius: "1rem", 
+        borderBottomRightRadius: "1rem"
       }}>
         <img
           src={heroImage}
           alt="Background"
           style={{
-            position: "absolute", inset: 0, width: "100%", height: "100%",
-            objectFit: "cover", zIndex: 0
+            position: "absolute", 
+            inset: 0, 
+            width: "100%", 
+            height: "100%",
+            objectFit: "cover", 
+            zIndex: 0
           }}
         />
-        <div style={{ position: "absolute", inset: 0, backgroundColor: "rgba(0,0,0,0.5)", zIndex: 1 }}></div>
-        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to right, #16a34a, #14b8a6)", zIndex: 2 }}></div>
+        <div style={{ 
+          position: "absolute", 
+          inset: 0, 
+          backgroundColor: "rgba(0,0,0,0.5)", 
+          zIndex: 1 
+        }}></div>
+        <div style={{ 
+          position: "absolute", 
+          inset: 0, 
+          background: "linear-gradient(to right, #16a34a, #14b8a6)", 
+          zIndex: 2 
+        }}><img
+          src={heroImage}
+          alt="Background"
+          style={{
+            position: "absolute", 
+            inset: 0, 
+            width: "100%", 
+            height: "100%",
+            objectFit: "cover", 
+            zIndex: 0
+          }}
+        /></div>
 
-        <div style={{ position: "relative", zIndex: 3, maxWidth: "1120px", margin: "0 auto" }}>
+        <div style={{ 
+          position: "relative", 
+          zIndex: 3, 
+          maxWidth: "1120px", 
+          margin: "0 auto" 
+        }}>
           <h1 style={{ fontSize: "3rem", fontWeight: "700" }}>Contact</h1>
           <p style={{ fontSize: "1.25rem" }}>ያግኙን</p>
           <a
-           href="/donate"
+            href="/donate"
             style={{
               display: "inline-block",
               background: "linear-gradient(to right, #ef4444, #b91c1c)",
@@ -93,26 +150,49 @@ const ContactUs = () => {
       }}>
         {/* Contact Info */}
         <div>
-          <h2 style={{ fontSize: "2.25rem", fontWeight: "700", color: "#7f1d1d", marginBottom: "1.5rem" }}>
+          <h2 style={{ 
+            fontSize: "2.25rem", 
+            fontWeight: "700", 
+            color: "#7f1d1d", 
+            marginBottom: "1.5rem" 
+          }}>
             Get in Touch
           </h2>
-          <p style={{ fontSize: "1.125rem", color: "#4b5563", marginBottom: "1.5rem" }}>
+          <p style={{ 
+            fontSize: "1.125rem", 
+            color: "#4b5563", 
+            marginBottom: "1.5rem" 
+          }}>
             We are optimists who love to work together
           </p>
 
           {phones.map((phone, i) => (
-            <div key={i} style={{ display: "flex", alignItems: "center", marginBottom: "1rem", color: "#374151" }}>
+            <div key={i} style={{ 
+              display: "flex", 
+              alignItems: "center", 
+              marginBottom: "1rem", 
+              color: "#374151" 
+            }}>
               <img src={phoneIcon} alt="Phone" style={{ width: "28px", height: "28px" }} />
               <span style={{ marginLeft: "0.75rem" }}>{phone}</span>
             </div>
           ))}
 
-          <div style={{ display: "flex", alignItems: "center", marginBottom: "1rem", color: "#374151" }}>
+          <div style={{ 
+            display: "flex", 
+            alignItems: "center", 
+            marginBottom: "1rem", 
+            color: "#374151" 
+          }}>
             <img src={emailIcon} alt="Email" style={{ width: "28px", height: "28px" }} />
             <span style={{ marginLeft: "0.75rem" }}>Mennainfo@gmail.com</span>
           </div>
 
-          <div style={{ display: "flex", alignItems: "center", color: "#374151" }}>
+          <div style={{ 
+            display: "flex", 
+            alignItems: "center", 
+            color: "#374151" 
+          }}>
             <img src={locationIcon} alt="Location" style={{ width: "28px", height: "28px" }} />
             <p style={{ marginLeft: "0.75rem", maxWidth: "350px" }}>
               Gondar City Kebele 15 Around Stadium Next to Basketball Court
@@ -121,17 +201,30 @@ const ContactUs = () => {
         </div>
 
         {/* Contact Form */}
-        <form id="contact-form" onSubmit={handleSubmit} style={{
-          backgroundColor: "white",
-          boxShadow: "0 10px 15px rgba(0,0,0,0.1)",
-          borderRadius: "0.5rem",
-          padding: "2rem",
-          display: "flex",
-          flexDirection: "column",
-          gap: "1.5rem"
-        }}>
+        <form 
+          id="contact-form" 
+          onSubmit={handleSubmit} 
+          style={{
+            backgroundColor: "white",
+            boxShadow: "0 10px 15px rgba(0,0,0,0.1)",
+            borderRadius: "0.5rem",
+            padding: "2rem",
+            display: "flex",
+            flexDirection: "column",
+            gap: "1.5rem"
+          }}
+        >
           <div>
-            <label htmlFor="name" style={{ fontWeight: "600", marginBottom: "0.5rem", display: "block" }}>Name</label>
+            <label 
+              htmlFor="name" 
+              style={{ 
+                fontWeight: "600", 
+                marginBottom: "0.5rem", 
+                display: "block" 
+              }}
+            >
+              Name
+            </label>
             <input
               id="name"
               name="name"
@@ -142,21 +235,22 @@ const ContactUs = () => {
               onBlur={() => handleBlur("name")}
               required
               style={{
-                width: "100%",
-                padding: "0.5rem 1rem",
-                borderRadius: "0.5rem",
-                border: "1.5px solid #d1d5db",
-                fontSize: "1rem",
-                outline: "none",
-                ...(focused.name ? {
-                  borderColor: "#4f46e5",
-                  boxShadow: "0 0 0 3px rgba(99,102,241,0.5)"
-                } : {})
+                ...inputBaseStyle,
+                ...(focused.name ? inputFocusedStyle : {})
               }}
             />
           </div>
           <div>
-            <label htmlFor="email" style={{ fontWeight: "600", marginBottom: "0.5rem", display: "block" }}>Email</label>
+            <label 
+              htmlFor="email" 
+              style={{ 
+                fontWeight: "600", 
+                marginBottom: "0.5rem", 
+                display: "block" 
+              }}
+            >
+              Email
+            </label>
             <input
               id="email"
               name="email"
@@ -167,21 +261,22 @@ const ContactUs = () => {
               onBlur={() => handleBlur("email")}
               required
               style={{
-                width: "100%",
-                padding: "0.5rem 1rem",
-                borderRadius: "0.5rem",
-                border: "1.5px solid #d1d5db",
-                fontSize: "1rem",
-                outline: "none",
-                ...(focused.email ? {
-                  borderColor: "#4f46e5",
-                  boxShadow: "0 0 0 3px rgba(99,102,241,0.5)"
-                } : {})
+                ...inputBaseStyle,
+                ...(focused.email ? inputFocusedStyle : {})
               }}
             />
           </div>
           <div>
-            <label htmlFor="message" style={{ fontWeight: "600", marginBottom: "0.5rem", display: "block" }}>Message</label>
+            <label 
+              htmlFor="message" 
+              style={{ 
+                fontWeight: "600", 
+                marginBottom: "0.5rem", 
+                display: "block" 
+              }}
+            >
+              Message
+            </label>
             <textarea
               id="message"
               name="message"
@@ -192,16 +287,9 @@ const ContactUs = () => {
               required
               rows="5"
               style={{
-                width: "100%",
-                padding: "0.5rem 1rem",
-                borderRadius: "0.5rem",
-                border: "1.5px solid #d1d5db",
-                fontSize: "1rem",
+                ...inputBaseStyle,
                 resize: "vertical",
-                ...(focused.message ? {
-                  borderColor: "#4f46e5",
-                  boxShadow: "0 0 0 3px rgba(99,102,241,0.5)"
-                } : {})
+                ...(focused.message ? inputFocusedStyle : {})
               }}
             ></textarea>
           </div>
@@ -223,7 +311,12 @@ const ContactUs = () => {
           >
             Send Message
           </button>
-          {status && <p style={{ color: "#16a34a", marginTop: "1rem" }}>{status}</p>}
+          {status && <p style={{ 
+            color: status.includes("wrong") ? "#ef4444" : "#16a34a", 
+            marginTop: "1rem" 
+          }}>
+            {status}
+          </p>}
         </form>
       </div>
     </div>

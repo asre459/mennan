@@ -1,10 +1,11 @@
 import React from "react";
 
+const heroImageUrl = "https://cms.mennacenter.com/uploads/photo_41_2024_06_24_11_08_57_d6d2c1b50a.jpg"; // Fallback or background
+
 const styles = {
   container: {
-    backgroundColor: "#f9fafb", // light surface color
+    backgroundColor: "#f9fafb",
     minHeight: "100vh",
-    overflow: "hidden",
     fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
   },
   heroSection: {
@@ -16,7 +17,7 @@ const styles = {
     overflow: "hidden",
     background: "linear-gradient(90deg, #16a34a 0%, #0d9488 100%)",
   },
-  heroBackgroundImage: {
+  backgroundImage: {
     position: "absolute",
     inset: 0,
     width: "100%",
@@ -24,17 +25,16 @@ const styles = {
     objectFit: "cover",
     zIndex: 0,
   },
-  heroOverlayBlack: {
+  overlayBlack: {
     position: "absolute",
     inset: 0,
     backgroundColor: "rgba(0,0,0,0.5)",
     zIndex: 1,
   },
-  heroOverlayGradient: {
+  overlayGradient: {
     position: "absolute",
     inset: 0,
-    background:
-      "linear-gradient(90deg, rgba(22,163,74,0.85) 0%, rgba(13,148,136,0.85) 100%)",
+    // background: "linear-gradient(90deg, rgba(22,163,74,0.85), rgba(13,148,136,0.85))",
     zIndex: 2,
   },
   heroContent: {
@@ -57,20 +57,15 @@ const styles = {
   },
   heroButton: {
     display: "inline-block",
-    background:
-      "linear-gradient(90deg, #ef4444 0%, #b91c1c 100%)",
+    background: "linear-gradient(90deg, #ef4444 0%, #b91c1c 100%)",
     color: "white",
     fontWeight: "600",
     padding: "0.75rem 1.5rem",
     borderRadius: "0.375rem",
     boxShadow: "0 10px 15px -3px rgba(239,68,68,0.5)",
     transition: "transform 0.3s ease, background-color 0.3s ease",
-    cursor: "pointer",
     textDecoration: "none",
-  },
-  heroButtonHover: {
-    transform: "scale(1.1)",
-    backgroundColor: "#f87171",
+    cursor: "pointer",
   },
   causesList: {
     display: "grid",
@@ -87,12 +82,7 @@ const styles = {
     borderRadius: "0.5rem",
     backgroundColor: "#ffffff",
     overflow: "hidden",
-    transition: "transform 0.3s ease",
-    cursor: "pointer",
-  },
-  causeItemHover: {
-    transform: "translateY(-8px)",
-    boxShadow: "0 10px 15px rgba(0,0,0,0.15)",
+    transition: "transform 0.3s ease, box-shadow 0.3s ease",
   },
   causeImage: {
     width: "100%",
@@ -106,13 +96,13 @@ const styles = {
   causeTitle: {
     fontSize: "1.5rem",
     fontWeight: "600",
-    color: "#1e293b", // slate-900
+    color: "#1e293b",
     marginBottom: "0.5rem",
   },
   causeText: {
     fontSize: "0.95rem",
-    color: "#475569", // slate-600
-    lineHeight: 1.4,
+    color: "#475569",
+    lineHeight: 1.5,
   },
   donateLink: {
     display: "inline-flex",
@@ -122,40 +112,43 @@ const styles = {
     fontSize: "0.875rem",
     fontWeight: "600",
     color: "#fff",
-    background:
-      "linear-gradient(90deg, #ef4444 0%, #b91c1c 100%)",
+    background: "linear-gradient(90deg, #ef4444 0%, #b91c1c 100%)",
     borderRadius: "9999px",
     textDecoration: "none",
     boxShadow: "0 4px 6px rgba(239,68,68,0.5)",
-    transition: "background-color 0.3s ease, transform 0.3s ease",
+    transition: "transform 0.3s ease",
   },
-  donateLinkHover: {
-    backgroundColor: "#f87171",
-    transform: "scale(1.1)",
-  },
-  donateArrow: {
+  arrow: {
     marginLeft: "0.75rem",
-    stroke: "#cbd5e1", // slate-300
+    stroke: "#cbd5e1",
   },
 };
 
-function OurCause() {
-  // For button hover effect with React inline styles, you can use useState or CSS hover,
-  // but here we'll keep it simple without JS interactivity.
-  // You can enhance it later with React state if needed.
+const causes = [
+  {
+    title: "Incontinence Supplies",
+    text: "Donate to help us provide incontinence supplies — diapers, bed pads, gloves, and more — to over 2,500 bedridden and mentally disabled residents.",
+    image: "https://cms.mennacenter.com/uploads/photo_41_2024_06_24_11_08_57_d6d2c1b50a.jpg",
+  },
+  {
+    title: "Building Our New Home",
+    text: "Help us build a sanctuary for the homeless, elderly, and disabled. Your support helps provide dignity, shelter, and hope to the most vulnerable.",
+    image: "https://cms.mennacenter.com/uploads/photo_8_2024_06_24_11_08_57_b79706da38.jpg",
+  },
+];
 
+function OurCause() {
   return (
     <div style={styles.container}>
       {/* Hero Section */}
       <section style={styles.heroSection}>
         <img
-          src="/static/back1-d38a1f2db30abd7d5dc809578644229d.jpg"
-          alt="News background"
-          style={styles.heroBackgroundImage}
+          src={heroImageUrl}
+          alt="Hero background"
+          style={styles.backgroundImage}
         />
-        <div style={styles.heroOverlayBlack}></div>
-        <div style={styles.heroOverlayGradient}></div>
-
+        <div style={styles.overlayBlack} />
+        <div style={styles.overlayGradient} />
         <div style={styles.heroContent}>
           <h1 style={styles.heroTitle}>Our Causes</h1>
           <p style={styles.heroSubtitle}>የእኛ ጉዳይ</p>
@@ -170,62 +163,34 @@ function OurCause() {
         </div>
       </section>
 
-      {/* Cause Items */}
+      {/* Cause Cards */}
       <ul style={styles.causesList}>
-        {[
-          {
-            title: "Incontinence supplies",
-            text:
-              "Kindly Donate to help us provide severely needed incontinence supplies, including diapers, bed pads, gloves, and more to our 2500 bedridden and mental disabled residents.",
-            image:
-              "https://cms.mennacenter.com/uploads/photo_41_2024_06_24_11_08_57_d6d2c1b50a.jpg",
-          },
-          {
-            title: "Building Our New Home",
-            text:
-              "Kindly help us build a home for the homeless, bed riders, elders, physically impaired, visually impaired, and for bed riders. Every gift matters! By doing so you will build your heavenly home!",
-            image:
-              "https://cms.mennacenter.com/uploads/photo_8_2024_06_24_11_08_57_b79706da38.jpg",
-          },
-        ].map((cause, index) => (
+        {causes.map((cause, idx) => (
           <li
-            key={index}
+            key={idx}
             style={styles.causeItem}
             onMouseEnter={(e) => {
               e.currentTarget.style.transform = "translateY(-8px)";
-              e.currentTarget.style.boxShadow =
-                "0 10px 15px rgba(0,0,0,0.15)";
+              e.currentTarget.style.boxShadow = "0 10px 15px rgba(0,0,0,0.15)";
             }}
             onMouseLeave={(e) => {
               e.currentTarget.style.transform = "translateY(0)";
               e.currentTarget.style.boxShadow = "0 4px 6px rgba(0,0,0,0.1)";
             }}
           >
-            <img
-              src={cause.image}
-              alt={cause.title}
-              style={styles.causeImage}
-              loading="lazy"
-            />
+            <img src={cause.image} alt={cause.title} style={styles.causeImage} loading="lazy" />
             <div style={styles.causeContent}>
               <h3 style={styles.causeTitle}>{cause.title}</h3>
               <p style={styles.causeText}>{cause.text}</p>
               <a
                 href="/donate"
                 style={styles.donateLink}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.backgroundColor = "#f87171";
-                  e.currentTarget.style.transform = "scale(1.1)";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.backgroundColor =
-                    "linear-gradient(90deg, #ef4444 0%, #b91c1c 100%)";
-                  e.currentTarget.style.transform = "scale(1)";
-                }}
+                onMouseEnter={(e) => (e.currentTarget.style.transform = "scale(1.1)")}
+                onMouseLeave={(e) => (e.currentTarget.style.transform = "scale(1)")}
               >
                 Donate
                 <svg
-                  style={styles.donateArrow}
+                  style={styles.arrow}
                   width="10"
                   height="16"
                   viewBox="0 0 10 16"

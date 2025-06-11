@@ -16,7 +16,7 @@ function Header() {
 
   return (
     <header style={{
-      backgroundColor: 'rgba(238, 244, 245, 0.1)',
+      backgroundColor: 'rgba(96, 14, 248, 0.1)',
       padding: '0.5rem 1.5rem',
       boxShadow: '0 4px 8px rgba(236, 227, 227, 0.1)',
       position: 'sticky',
@@ -113,7 +113,7 @@ function Header() {
             display: none;
             flex-direction: column;
             width: 100%;
-            background-color: #065f46;
+            background-color:hsl(162, 64.90%, 88.80%);
             padding: 1rem 0;
             border-radius: 0 0 12px 12px;
           }

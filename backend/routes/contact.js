@@ -3,7 +3,11 @@ const ContactMessage = require('../models/contactMessage');
 const router = express.Router();
 const nodemailer = require('nodemailer');
 require('dotenv').config();
-// POST /api/contact
+
+const EMAIL_USER = process.env.EMAIL_USER;
+const EMAIL_PASS = process.env.EMAIL_PASS;
+const EMAIL_TO = process.env.EMAIL_TO;
+
 router.post('/', async (req, res) => {
   const { name, email, message } = req.body;
 
@@ -12,19 +16,14 @@ router.post('/', async (req, res) => {
   }
 
   try {
-    const newMessage = new ContactMessage({
-      name,
-      email,
-      message
-    });
-
+    const newMessage = new ContactMessage({ name, email, message });
     await newMessage.save();
-     // Send email to receiver
+
     const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
-        user: EMAIL_USER, // Replace with your email
-        pass: EMAIL_PASS// Use an app password if using Gmail
+        user: EMAIL_USER,
+        pass: EMAIL_PASS // Use Gmail App Password if 2FA is enabled
       }
     });
 
@@ -42,4 +41,5 @@ router.post('/', async (req, res) => {
     res.status(500).json({ error: 'Server error. Try again later.' });
   }
 });
+
 module.exports = router;

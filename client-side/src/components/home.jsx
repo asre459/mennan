@@ -3,19 +3,25 @@ import { Link } from "react-router-dom";
 
 function Home() {
   useEffect(() => {
-     // Inject keyframes for horizontal scroll animation
+    // Inject keyframes for scrolling text and ocean wave
     const style = document.createElement("style");
     style.innerHTML = `
       @keyframes scrollText {
         0% { transform: translateX(100%); }
         100% { transform: translateX(-100%); }
       }
+
+      @keyframes wave {
+        0% { background-position-x: 0; }
+        100% { background-position-x: 1000px; }
+      }
     `;
     document.head.appendChild(style);
     return () => document.head.removeChild(style);
   }, []);
+
   return (
-    <div style={{ fontFamily: "sans-serif", overflowX: "hidden", marginTop: "1px" }}>
+    <div style={{ fontFamily: "sans-serif", overflowX: "hidden", marginTop: "0px" }}>
       {/* Scrolling Marquee */}
       <div style={styles.marqueeContainer}>
         <div style={styles.marqueeText}>
@@ -25,7 +31,8 @@ function Home() {
 
       {/* Hero Section */}
       <section style={styles.heroSection}>
-        <div style={styles.heroOverlay}></div>
+        {/* Ocean wave animation layer */}
+        <div style={{ ...styles.heroOverlay, ...styles.oceanWave }}></div>
         <div style={styles.heroText}>
           <h1 style={styles.heroTitle}>
             The word MENNA means new light, new hope and unexpected free food.
@@ -45,12 +52,7 @@ function Home() {
         </h2>
         <div style={styles.servicesGrid}>
           <div style={styles.serviceItem}>
-            <img
-              src="https://cms.mennacenter.com/uploads/S_R60694eee_1587x2048_b75a1a5637.jpg"
-              alt="Full Shelter care service"
-              style={styles.serviceImage}
-            />
-            <div>
+             <div>
               <h3 style={styles.serviceTitle}>Full Shelter Care Service</h3>
               <p>
                 We provide basic services—food, clothes, shelter, hygiene, and
@@ -58,14 +60,15 @@ function Home() {
                 our center.
               </p>
             </div>
-          </div>
-
-          <div style={{ ...styles.serviceItem, flexDirection: "row-reverse" }}>
             <img
-              src="https://cms.mennacenter.com/uploads/photo_2022_01_28_20_13_11_3316424b08.jpg"
-              alt="Medical and medication support"
+              src="https://cms.mennacenter.com/uploads/S_R60694eee_1587x2048_b75a1a5637.jpg"
+              alt="Full Shelter care service"
               style={styles.serviceImage}
             />
+           
+          </div>
+
+          <div style={styles.serviceItem }>
             <div>
               <h3 style={styles.serviceTitle}>Medical and Medication Support</h3>
               <p>
@@ -74,6 +77,27 @@ function Home() {
                 well-being.
               </p>
             </div>
+            <img
+              src="https://cms.mennacenter.com/uploads/photo_2022_01_28_20_13_11_3316424b08.jpg"
+              alt="Medical and medication support"
+              style={styles.serviceImage}
+            />
+          </div>
+          
+            <div style={styles.serviceItem}>
+            <div>
+              <h3 style={styles.serviceTitle}>Free Clothing and showering</h3>
+              <p>
+             One of the services provided by the Mena Elderly and Mentally Ill Support Center to the community is the street shower service.
+              This street shower was started with the intention of providing services to street children who live and sleep on the streets,
+               but it is a service that also includes other people.
+              </p>
+            </div>
+            <img
+              src="https://cms.mennacenter.com/uploads/showring_38504a7da3.jpg"
+              alt="Medical and medication support"
+              style={styles.serviceImage}
+            />
           </div>
         </div>
       </section>
@@ -82,9 +106,9 @@ function Home() {
 }
 
 const styles = {
-    marqueeContainer: {
+  marqueeContainer: {
     position: "relative",
-    textAlign:"center",
+    textAlign: "center",
     top: "350px",
     width: "100%",
     overflow: "hidden",
@@ -101,6 +125,7 @@ const styles = {
     textShadow: "1px 1px 2px rgba(0,0,0,0.5)",
     color: "#ffffff",
   },
+
   heroSection: {
     height: "100vh",
     backgroundImage: "url('https://cms.mennacenter.com/uploads/photo_33_2024_06_24_11_08_57_c238876904.jpg')",
@@ -113,6 +138,7 @@ const styles = {
     textAlign: "center",
     color: "#fff",
   },
+
   heroOverlay: {
     position: "absolute",
     top: 0,
@@ -122,25 +148,31 @@ const styles = {
     backgroundColor: "rgba(0,0,0,0.5)",
     zIndex: 1,
   },
+
+  oceanWave: {
+    backgroundImage: 'url("https://i.ibb.co/1nZ4tzL/ocean-wave.png")',
+    backgroundRepeat: "repeat-x",
+    backgroundSize: "contain",
+    opacity: 0.3,
+    animation: "wave 20s linear infinite",
+  },
+
   heroText: {
     position: "relative",
     zIndex: 2,
     maxWidth: "800px",
     marginTop: "100px",
-
-    
-
   },
+
   heroTitle: {
     fontSize: "2.5rem",
     fontWeight: "bold",
     marginBottom: "100px",
   },
+
   ctaContainer: {
     position: "relative",
     bottom: "50px",
-    left: 0,
-    right: 0,
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
@@ -158,6 +190,7 @@ const styles = {
     animation: "glow 2s ease-in-out infinite alternate",
     boxShadow: "0 0 15px rgba(255,255,255,0.5)",
   },
+
   donateButton: {
     background: "linear-gradient(to right, #ff416c, #ff4b2b)",
     color: "white",
@@ -169,11 +202,13 @@ const styles = {
     boxShadow: "0 5px 15px rgba(0,0,0,0.2)",
     transition: "transform 0.3s ease",
   },
+
   servicesSection: {
     padding: "80px 20px",
     background: "#f9f9f9",
     textAlign: "center",
   },
+
   sectionTitle: {
     fontSize: "2.5rem",
     overflow: "hidden",
@@ -184,33 +219,38 @@ const styles = {
     WebkitTextFillColor: "transparent",
     fontWeight: "bold",
   },
-  servicesGrid: {
+servicesGrid: {
     display: "grid",
-    gap: "40px",
-    maxWidth: "1000px",
-    margin: "0 auto",
+    gap: "3rem",
+    maxWidth: "3000px",
+    margin: "10 auto",
+    gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
+    alignItems: "center",
   },
+
   serviceItem: {
     display: "flex",
     flexDirection: "row",
-    gap: "30px",
+    gap: "2rem",
     alignItems: "center",
-    textAlign: "left",
     flexWrap: "wrap",
+    padding: "20px",
+    background: "#fff",
+    borderRadius: "1.25rem",
+    boxShadow: "0 4px 10px rgba(0,0,0,0.1)",
   },
+
   serviceImage: {
-    width: "100%",
-    maxWidth: "400px",
-    height:"100%",
-    borderRadius: "16px",
-    boxShadow: "0 6px 20px rgba(0,0,0,0.2)",
+    width: "350px",
+    height: "auto",
+    borderRadius: "1.25rem",
+    boxShadow: "1p 1px 1px rgba(0,0,0,0.2)",
   },
   serviceTitle: {
-    display: "flex",
-
-    fontSize: "1.5rem",
-    marginBottom: "10px",
-    fontWeight: "bold",
+    fontSize: "1.75rem",
+    fontWeight: "700",
+    marginBottom: "0.8rem",
+    color: "#111827",
   },
 };
 

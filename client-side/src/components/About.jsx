@@ -1,7 +1,24 @@
-import React from "react";
-import aboutImage from "../../src/assets/asre.png"; // Proper import for image
+import React, { useEffect, useState } from "react";
+import aboutImage from "../../src/assets/image6.jpg";
 
 function About() {
+  const [isWideScreen, setIsWideScreen] = useState(window.innerWidth >= 768);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsWideScreen(window.innerWidth >= 768);
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const dynamicGridStyle = {
+    ...styles.grid,
+    gridTemplateColumns: isWideScreen ? "1fr 1fr" : "1fr",
+    justifyItems: isWideScreen ? "start" : "center",
+  };
+
   return (
     <div style={styles.wrapper}>
       {/* Hero Section */}
@@ -19,7 +36,7 @@ function About() {
 
       {/* About Section */}
       <section style={styles.aboutSection}>
-        <div style={styles.grid}>
+        <div style={dynamicGridStyle}>
           <div>
             <img src={aboutImage} alt="Menna" style={styles.image} />
           </div>
@@ -31,37 +48,25 @@ function About() {
               <strong>Background of the Organization:</strong> Menna Elderly &
               Mentally Challenging Support Center is a local, non-profit,
               non-governmental organization founded in 2014 in Gondar by
-              university students. Initially called "Menna Free Food Service,"
-              its main activity was providing daily supper to homeless
-              individuals.
-              <br />
-              <br />
-              Over time, Menna evolved into a holistic care center, now
-              offering shelter, food, clothing, and medical assistance to
-              elderly and mentally challenged individuals without support.
-              <br />
-              <br />
+              university students...
+              <br /><br />
+              Over time, Menna evolved into a holistic care center...
+              <br /><br />
               <strong>Meaning:</strong> The word “MENNA” means new light, new
               hope, and unexpected free food.
-              <br />
-              <br />
-              <strong>Profile:</strong>
-              <br />
-              Name: MENNA Elderly and Mentally Challenging Support Center
-              <br />
-              Established: 2014
-              <br />
-              Type: Local NGO
-              <br />
-              Registration Number: 046
-              <br />
+              <br /><br />
+              <strong>Profile:</strong><br />
+              Name: MENNA Elderly and Mentally Challenging Support Center<br />
+              Established: 2014<br />
+              Type: Local NGO<br />
+              Registration Number: 046<br />
               City: Gondar, Ethiopia
             </p>
           </div>
         </div>
       </section>
 
-      {/* Mission */}
+      {/* Mission Section */}
       <section style={styles.missionSection}>
         <div style={styles.centeredContent}>
           <h2 style={styles.sectionTitleWhite}>Our Mission</h2>
@@ -73,13 +78,12 @@ function About() {
         </div>
       </section>
 
-      {/* Vision */}
+      {/* Vision Section */}
       <section style={styles.visionSection}>
         <div style={styles.centeredContent}>
           <h2 style={styles.sectionTitleWhite}>Our Vision</h2>
           <p style={styles.whiteParagraph}>
-            We strive to go above and beyond for the people we serve. Our vision
-            is to provide dignity, care, and hope for every person in need.
+            We strive to go above and beyond for the people we serve...
           </p>
         </div>
       </section>
@@ -90,7 +94,7 @@ function About() {
 const styles = {
   wrapper: {
     backgroundColor: "#fff",
-    color: "#1f2937", // gray-900
+    color: "#1f2937",
     fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
   },
   hero: {
@@ -143,7 +147,6 @@ const styles = {
     transition: "transform 0.3s ease",
     textDecoration: "none",
   },
-
   aboutSection: {
     maxWidth: "1200px",
     margin: "0 auto",
@@ -151,24 +154,21 @@ const styles = {
   },
   grid: {
     display: "grid",
-    gridTemplateColumns: "1fr",
     gap: "2.5rem",
     alignItems: "center",
-    justifyItems: "center",
     textAlign: "left",
-    // We'll do a media query with JS fallback below
   },
   aboutText: {
     maxWidth: "600px",
   },
   image: {
     width: "400px",
-    hight:"400px",
+    height: "400px", // fixed typo from "hight"
     borderRadius: "1.5rem",
     boxShadow: "0 8px 8px rgba(0,0,0,0.2)",
     transition: "transform 0.3s ease",
     cursor: "pointer",
-    padding: "2rem 2rem",
+    padding: "2rem",
   },
   sectionTitle: {
     fontSize: "2.5rem",
@@ -176,12 +176,12 @@ const styles = {
     marginBottom: "1rem",
   },
   highlight: {
-    color: "#ef4444", // red-500
+    color: "#ef4444",
   },
   paragraph: {
     fontSize: "1.125rem",
     lineHeight: "1.75",
-    color: "#374151", // gray-700
+    color: "#374151",
   },
   missionSection: {
     background: "linear-gradient(to right, #ef4444, #b91c1c)",
@@ -208,21 +208,5 @@ const styles = {
     lineHeight: "1.75",
   },
 };
-
-// Add media query for grid columns dynamically
-// This function updates styles.grid to 2 columns on wider screens
-if (typeof window !== "undefined") {
-  const updateGridColumns = () => {
-    if (window.innerWidth >= 768) {
-      styles.grid.gridTemplateColumns = "1fr 1fr";
-      styles.grid.justifyItems = "start";
-    } else {
-      styles.grid.gridTemplateColumns = "1fr";
-      styles.grid.justifyItems = "center";
-    }
-  };
-  updateGridColumns();
-  window.addEventListener("resize", updateGridColumns);
-}
 
 export default About;

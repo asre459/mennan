@@ -219,7 +219,7 @@ router.post('/pay', async (req, res) => {
       nonce: crypto.randomUUID(),
       beneficiaries: [
         {
-          accountNumber: process.env.RECEIVER_ACCOUNT,
+          accountNumber: '01320811436100',
           bank: "AWINETAA",
           amount: amount,
         },
