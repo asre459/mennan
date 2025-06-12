@@ -116,7 +116,7 @@ function ReceiptPage() {
 
   const fetchDonationData = async (donationId) => {
     try {
-      const response = await fetch(`http://localhost:5000/api/donations/${donationId}`);
+      const response = await fetch(`https://asremenaapp.onrender.com/api/donations/${donationId}`);
       const data = await response.json();
       setDonationData(data);
     } catch (err) {

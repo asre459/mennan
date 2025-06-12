@@ -144,7 +144,7 @@ function SantimPayConfirm({ donationData }) {
       };
 
       // Initiate payment with ArifPay
-      const response = await fetch('http://localhost:5000/api/donations/pay', {
+      const response = await fetch('https://asremenaapp.onrender.com/api/donations/pay', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(paymentData)

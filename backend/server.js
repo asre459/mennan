@@ -10,8 +10,19 @@ const contactRoutes = require('./routes/contact'); // Only include if implemente
 const app = express();
 
 // --- CORS setup ---
+const allowedOrigins = [
+  process.env.FRONTEND_URL, 
+  'http://localhost:5173'
+];
+
 app.use(cors({
-  origin: ['http://localhost:5173'],
+  origin: function(origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   methods: ['GET', 'POST', 'PATCH'],
   credentials: true
 }));
