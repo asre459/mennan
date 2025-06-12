@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import heroImage from "../../dist/assets/image13-c-w0pB1D.jpg";
+import heroImage from "../../src/assets/image13-c-w0pB1D.jpg";
 import phoneIcon from "../../src/assets/phone.png";
 import emailIcon from "../../src/assets/asreE.jpg";
 import locationIcon from "../../src/assets/location.png";
