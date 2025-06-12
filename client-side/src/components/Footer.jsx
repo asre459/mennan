@@ -117,7 +117,7 @@ function Footer() {
         </p>
         <p>
           &copy; 2025 Menna Center. All rights reserved. Developed by{' '}
-          <Link to="www.linkedin.com/in/asregide-firdie-as12" style={{ textDecoration: 'none', color: '#0077cc' }}>Aseregide Firdie</Link>.
+          <Link to="https://www.linkedin.com/in/asregide-firdie-as12?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" style={{ textDecoration: 'none', color: '#0077cc' }}>Aseregide Firdie</Link>.
         </p>
       </div>
     </footer>
