@@ -71,9 +71,8 @@ function About() {
         <div style={styles.centeredContent}>
           <h2 style={styles.sectionTitleWhite}>Our Mission</h2>
           <p style={styles.whiteParagraph}>
-            Build the best support system that creates meaningful impact for
-            vulnerable individuals, and lead efforts that inspire compassion and
-            care.
+       Build the best product that creates the most value for our customers,
+        use business to inspire and implement environmentally friendly solutions.
           </p>
         </div>
       </section>
@@ -83,7 +82,8 @@ function About() {
         <div style={styles.centeredContent}>
           <h2 style={styles.sectionTitleWhite}>Our Vision</h2>
           <p style={styles.whiteParagraph}>
-            We strive to go above and beyond for the people we serve...
+We strive to go above and beyond for our clients no matter the challenge.
+ We aim to deliver our very best work every single day across our services.
           </p>
         </div>
       </section>
@@ -184,13 +184,13 @@ const styles = {
     color: "#374151",
   },
   missionSection: {
-    background: "linear-gradient(to right, #ef4444, #b91c1c)",
-    color: "#fff",
+    background: 'linear-gradient(to right,hsl(35, 100.00%, 91.20%),rgb(243, 238, 237))',
+    color: "#1f2937",
     padding: "5rem 1rem",
   },
   visionSection: {
-    background: "linear-gradient(to right, #5eead4, #14b8a6)",
-    color: "#fff",
+    background: 'linear-gradient(to right,hsl(35, 100.00%, 91.20%),rgb(250, 241, 238))',
+     color: "#1f2937",
     padding: "5rem 1rem",
   },
   centeredContent: {

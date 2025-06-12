@@ -88,7 +88,7 @@ function Header() {
               onMouseEnter={() => setHoverIndex(i)}
               onMouseLeave={() => setHoverIndex(null)}
               style={{
-                color: hoverIndex === i ? '#d1fae5' : 'black',
+                color: hoverIndex === i ? 'rgb(50,233,139)' : 'black',
                 textDecoration: 'none',
                 fontWeight: '600',
                 fontSize: '1rem',

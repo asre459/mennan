@@ -44,23 +44,23 @@ function SantimPayWizard() {
 const styles = {
   container: {
     minHeight: '100vh',
-    background: 'linear-gradient(to right, #ffecd2, #fcb69f)',
+    background: 'linear-gradient(to right,hsl(35, 100.00%, 91.20%),rgb(228, 203, 195))',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    padding: '20px',
+    padding: '10px',
   },
   card: {
     backgroundColor: '#fff',
-    padding: '30px 40px',
+    padding: '15px 20px',
     borderRadius: '16px',
-    boxShadow: '0 8px 20px rgba(0,0,0,0.1)',
+    boxShadow: '0 8px 20px rgba(235, 217, 217, 0.1)',
     width: '100%',
     maxWidth: '500px',
   },
   title: {
     fontSize: '26px',
-    marginBottom: '10px',
+    marginBottom: '5px',
     textAlign: 'center',
     color: '#222',
   },
@@ -68,7 +68,7 @@ const styles = {
     fontSize: '14px',
     color: '#777',
     textAlign: 'center',
-    marginBottom: '20px',
+    marginBottom: '10px',
   },
 };
 

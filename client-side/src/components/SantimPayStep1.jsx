@@ -73,7 +73,7 @@ const styles = {
     color: '#333',
     marginBottom: '20px',
     textAlign: 'center',
-    borderBottom: '2px solid #f0a500',
+    borderBottom: '2px solidrgb(247, 239, 221)',
     paddingBottom: '10px',
   },
   list: {
@@ -87,7 +87,7 @@ const styles = {
     borderRadius: '8px',
     padding: '10px',
     transition: 'background 0.3s',
-    backgroundColor: '#fcfcfc',
+    backgroundColor: '#cfcfc',
   },
   radioLabel: {
     display: 'flex',
